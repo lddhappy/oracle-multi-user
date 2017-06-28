@@ -1,0 +1,39 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven{ url 'https://code.lds.org/nexus/content/groups/main-repo'}
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	// https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+	compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.9.RELEASE'
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.9'
+
+//	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	// https://mvnrepository.com/artifact/com.alibaba/druid
+	compile group: 'com.alibaba', name: 'druid', version: '1.0.29'
+	// https://mvnrepository.com/artifact/oracle/ojdbc6
+	compile files('lib/ojdbc6.jar')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
